@@ -27,7 +27,7 @@ class yocto-adt-installer {
     owner => 'vagrant',
     group => 'vagrant',
     ensure => file,
-    source => "puppet:///modules/adt_installer/adt_installer.conf",
+    source => "puppet:///modules/yocto-adt-installer/adt_installer.conf",
     require => Staging::Extract['adt_installer.tar.bz2']
   }
 
