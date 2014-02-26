@@ -1,4 +1,4 @@
-class adt_installer {
+class yocto-adt-installer {
   require tools
   class { 'staging':
     path => '/var/staging',
