@@ -10,11 +10,6 @@ class yocto-adt-installer {
     source => 'http://britannica.tw.it/decos/adt_installer.tar.bz2'
   }
 
-  file { "/var/staging":
-      owner => 'vagrant',
-      ensure => "directory",
-  }
-
   staging::extract { 'adt_installer.tar.bz2':
     user => 'vagrant',
     target => '/var/staging',
