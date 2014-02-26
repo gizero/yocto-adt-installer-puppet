@@ -10,20 +10,20 @@ class yocto-adt-installer {
     source => 'http://britannica.tw.it/decos/adt_installer.tar.bz2'
   }
 
-  file { "/tmp/staging":
+  file { "/var/staging":
       owner => 'vagrant',
       ensure => "directory",
   }
 
   staging::extract { 'adt_installer.tar.bz2':
     user => 'vagrant',
-    target => '/tmp/staging',
-    creates => '/tmp/staging/adt_installer',
+    target => '/var/staging',
+    creates => '/var/staging/adt_installer',
     require => Staging::File['adt_installer.tar.bz2'],
   }
 
-  file { '/tmp/staging/adt-installer/adt_installer.conf':
-    path   => '/tmp/staging/adt-installer/adt_installer.conf',
+  file { '/var/staging/adt-installer/adt_installer.conf':
+    path   => '/var/staging/adt-installer/adt_installer.conf',
     owner => 'vagrant',
     group => 'vagrant',
     ensure => file,
@@ -32,10 +32,10 @@ class yocto-adt-installer {
   }
 
   exec { 'Install ADT':
-    cwd => '/tmp/staging/adt-installer',
+    cwd => '/var/staging/adt-installer',
     user => 'vagrant',
-    command => "/bin/echo -e -n '/opt/poky/1.5.1\nS\n' | /tmp/staging/adt-installer/adt_installer",
+    command => "/bin/echo -e -n '/opt/poky/1.5.1\nS\n' | /var/staging/adt-installer/adt_installer",
     timeout => 0,
-    require => File['/tmp/staging/adt-installer/adt_installer.conf']
+    require => File['/var/staging/adt-installer/adt_installer.conf']
   }
 }
