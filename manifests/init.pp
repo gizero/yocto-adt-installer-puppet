@@ -7,7 +7,8 @@ class yocto-adt-installer {
   }
 
   staging::file { 'adt_installer.tar.bz2':
-    source => 'http://britannica.tw.it/decos/adt_installer.tar.bz2'
+    #source => 'http://britannica.tw.it/decos/adt_installer.tar.bz2'
+    source => 'http://gizero-desktop.tw.it/adtrepo/sdk/adt_installer.tar.bz2'
   }
 
   staging::extract { 'adt_installer.tar.bz2':
