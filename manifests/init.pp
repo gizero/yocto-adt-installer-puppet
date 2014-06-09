@@ -34,4 +34,10 @@ class yocto-adt-installer {
     timeout => 0,
     require => File['/var/staging/adt-installer/adt_installer.conf']
   }
+
+# remove archive to force downloading again next time
+  exec { 'Cleanup':
+    command => 'rm /var/staging/yocto-adt-installer/adt_installer.tar.bz2',
+    require => Exec['Install ADT']
+  }
 }
