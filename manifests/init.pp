@@ -39,6 +39,6 @@ class yocto-adt-installer {
 # remove archive to force downloading again next time
   exec { 'Cleanup':
     command => 'rm /var/staging/yocto-adt-installer/adt_installer.tar.bz2',
-    require => Exec['Install ADT']
+    after => Staging::Extract['adt_installer.tar.bz2']
   }
 }
