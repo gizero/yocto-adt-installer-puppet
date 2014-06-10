@@ -18,21 +18,22 @@ class yocto-adt-installer {
     require => Staging::File['adt_installer.tar.bz2'],
   }
 
-  file { '/var/staging/adt-installer/adt_installer.conf':
-    path   => '/var/staging/adt-installer/adt_installer.conf',
-    owner => 'vagrant',
-    group => 'vagrant',
-    ensure => file,
-    source => "puppet:///modules/yocto-adt-installer/adt_installer.conf",
-    require => Staging::Extract['adt_installer.tar.bz2']
-  }
-
+#  file { '/var/staging/adt-installer/adt_installer.conf':
+#    path   => '/var/staging/adt-installer/adt_installer.conf',
+#    owner => 'vagrant',
+#    group => 'vagrant',
+#    ensure => file,
+#    source => "puppet:///modules/yocto-adt-installer/adt_installer.conf",
+#    require => Staging::Extract['adt_installer.tar.bz2']
+#  }
+#
   exec { 'Install ADT':
     cwd => '/var/staging/adt-installer',
     user => 'vagrant',
     command => "/bin/echo -e -n '/opt/poky/1.5.1\nS\n' | /var/staging/adt-installer/adt_installer",
     timeout => 0,
-    require => File['/var/staging/adt-installer/adt_installer.conf']
+    require => Staging::Extract['adt_installer.tar.bz2']
+#    require => File['/var/staging/adt-installer/adt_installer.conf']
   }
 
 # remove archive to force downloading again next time
