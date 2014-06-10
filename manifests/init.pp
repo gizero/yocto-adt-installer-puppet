@@ -30,7 +30,7 @@ class yocto-adt-installer {
   exec { 'Install ADT':
     cwd => '/var/staging/adt-installer',
     user => 'vagrant',
-    command => "/bin/echo -e -n '/opt/poky/1.5.1\nS\n' | HOME=/home/vagrant /var/staging/adt-installer/adt_installer",
+    command => "export HOME=/home/vagrant; /bin/echo -e -n '/opt/poky/1.5.1\nS\n' | /var/staging/adt-installer/adt_installer",
     timeout => 0,
     require => Staging::Extract['adt_installer.tar.bz2']
 #    require => File['/var/staging/adt-installer/adt_installer.conf']
